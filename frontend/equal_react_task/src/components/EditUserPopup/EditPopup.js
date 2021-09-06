@@ -37,7 +37,7 @@ export default function Popup() {
         setOpen(false);
     };
 
-    const [user, setUser] = useState({
+    const [users, setUser] = useState({
         firstname: '',
         lastname: '',
         email: '',
@@ -52,73 +52,79 @@ export default function Popup() {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        await axios.put("http://equal.localhost/?do=model_update&entity=core\\User&ids[]=25&fields[firstname]=" + firstname + "&fields[lastname]=" + lastname + "&fields[login]=" + email + "&fields[password]=" + password);
+        await axios.put("http://equal.localhost/?do=model_update&entity=core\\User&ids[]=28&fields[firstname]=" + firstname + "&fields[lastname]=" + lastname + "&fields[login]=" + email + "&fields[password]=" + password);
         // history.push("/");
         window.location.reload();
     };
 
     const loadUser = async () => {
-        const result = await axios.get("http://equal.localhost/?get=model_read&entity=core\\User&ids[]=25&fields[]=firstname&fields[]=lastname&fields[]=login&fields[]=password");
-        console.log(result.data);
+        const result = await axios.get("http://equal.localhost/?get=model_read&entity=core\\User&ids[]=28&fields[]=firstname&fields[]=lastname&fields[]=login&fields[]=password");
+        // console.log(result.data);
         setUser(result.data);
         // console.log(user);
     };
 
-    const { firstname, lastname, email, password } = user;
+    const { firstname, lastname, email, password } = users;
     const handleFormChange = e => {
-        setUser({ ...user, [e.target.name]: e.target.value });
-        console.log("Userr: " + firstname + lastname);
+        setUser({ ...users, [e.target.name]: e.target.value });
+        // console.log("Userr: " + firstname + lastname);
     };
 
     const body = (
         <div style={modalStyle} className={classes.paper}>
             <h2 id="simple-modal-title" className={classes.header}>Edit User Profile</h2>
             <form className={classes.root} onSubmit={handleSubmit}>
-                <Grid container>
-                    <Grid item sm={5}>
-                        <TextField
-                            id="outlined-required"
-                            label="First Name"
-                            variant="outlined"
-                            name="firstname"
-                            onChange={handleFormChange}
-                            value={firstname}
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Email"
-                            variant="outlined"
-                            name="email"
-                            type="email"
-                            onChange={handleFormChange}
-                            value={email}
-                        />
-                    </Grid>
-                    <Grid item sm={2}></Grid>
-                    <Grid item sm={5}>
-                        <TextField
-                            id="outlined-required"
-                            label="Last Name"
-                            variant="outlined"
-                            name="lastname"
-                            onChange={handleFormChange}
-                            value={lastname}
-                        />
-                        <TextField
-                            id="outlined-required"
-                            label="Password"
-                            variant="outlined"
-                            type="password"
-                            name="password"
-                            onChange={handleFormChange}
-                            value={password}
-                        />
-                    </Grid>
-                </Grid>
-                {/* ))} */}
+                {/* {
+                    users.map((user) => ( */}
+                        <Grid container>
+                            <Grid item sm={5}>
+
+                                <TextField
+                                    id="outlined-required"
+                                    label="First Name"
+                                    variant="outlined"
+                                    name="firstname"
+                                    onChange={handleFormChange}
+                                    value={firstname}
+                                />
+                                <TextField
+                                    id="outlined-required"
+                                    label="Email"
+                                    variant="outlined"
+                                    name="email"
+                                    type="email"
+                                    onChange={handleFormChange}
+                                    value={email}
+                                />
+
+                            </Grid>
+                            <Grid item sm={2}></Grid>
+                            <Grid item sm={5}>
+                                <TextField
+                                    id="outlined-required"
+                                    label="Last Name"
+                                    variant="outlined"
+                                    name="lastname"
+                                    onChange={handleFormChange}
+                                    value={lastname}
+                                />
+                                <TextField
+                                    id="outlined-required"
+                                    label="Password"
+                                    variant="outlined"
+                                    type="password"
+                                    name="password"
+                                    onChange={handleFormChange}
+                                    value={password}
+                                />
+                            </Grid>
+                        </Grid>
+                    {/* ))
+                } */}
                 <Button type="submit" variant="outlined" style={{ marginLeft: "205px" }}>
                     Edit User
                 </Button>
+
             </form>
         </div>
     );
@@ -134,7 +140,11 @@ export default function Popup() {
                 aria-labelledby="simple-modal-title"
                 aria-describedby="simple-modal-description"
             >
+
+                {body}
             </Modal>
+
+
         </div>
     );
 }

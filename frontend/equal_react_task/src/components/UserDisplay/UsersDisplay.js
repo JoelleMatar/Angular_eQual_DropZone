@@ -23,9 +23,8 @@ const UsersDisplay = () => {
     }, []);
 
     const loadUsers = async () => {
-        const result = await axios.get("http://equal.localhost/?get=model_collect&entity=core\\User&fields[]=firstname&fields[]=lastname");
+        const result = await axios.get("http://equal.localhost/?get=model_collect&entity=core\\User&fields[]=firstname&fields[]=lastname&fields[]=groups_ids");
         setUser(result.data.reverse());
-        console.log(result.data);
     };
 
     const deleteUser = (userId) => {
@@ -48,19 +47,22 @@ const UsersDisplay = () => {
                         <TableRow>
                             <TableCell>First Name</TableCell>
                             <TableCell>Last Name</TableCell>
+                            <TableCell>Group ID</TableCell>
                             <TableCell align="right">Edit</TableCell>
                             <TableCell align="right">Delete</TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>
                         {users.map((user) => (
-                            console.log(user.firstname),
                             <TableRow key={user.id}>
                                 <TableCell component="th" scope="row">
                                     {user.firstname}
                                 </TableCell>
                                 <TableCell component="th" scope="row">
                                     {user.lastname}
+                                </TableCell>
+                                <TableCell component="th" scope="row">
+                                    {user.groups_ids}
                                 </TableCell>
                                 <TableCell align="right"><EditPopup /></TableCell>
                                 <TableCell align="right"><DeleteIcon onClick={() => deleteUser(user.id)} /></TableCell>

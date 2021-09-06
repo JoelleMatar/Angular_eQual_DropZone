@@ -5,6 +5,11 @@ import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import Button from '@material-ui/core/Button';
 import axios from "axios";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 function getModalStyle() {
     const top = 50;
@@ -31,27 +36,43 @@ export default function Popup() {
         setOpen(false);
     };
 
+    const [groups, setGroup] = useState([]);
+
+    useEffect(() => {
+        loadGroups();
+    }, []);
+
+    const loadGroups = async () => {
+        const result = await axios.get("http://equal.localhost/?get=model_collect&entity=core\\Group");
+        setGroup(result.data.reverse());
+    };
+
+
+
+    
+
     const initialState = {
         firstname: '',
         lastname: '',
         email: '',
         password: '',
+        // group_id: ''
     };
 
     const [form, setForm] = useState(initialState);
 
-    const { firstname, lastname, email, password } = form;
+    const { firstname, lastname, email, password, group_id } = form;
 
     const handleFormChange = (event) => {
         setForm({ ...form, [event.target.name]: event.target.value });
-        console.log(event.target.value);
+        // console.log(event.target.value);
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log(form);
-
-        await axios.post("http://equal.localhost/?do=model_create&entity=core\\User&fields[firstname]=" + form.firstname + "&fields[lastname]=" + form.lastname + " &fields[email]=" + form.email + "&fields[password]=" + form.password + "")
+        // console.log(form);
+        console.log("IDSSSSS" + groups.id);
+        await axios.post("http://equal.localhost/?do=model_create&entity=core\\User&fields[firstname]=" + form.firstname + "&fields[lastname]=" + form.lastname + " &fields[email]=" + form.email + "&fields[password]=" + form.password + "&fields[groups_ids]=4" + "")
             .then(() => {
                 alert("User added");
                 window.location.reload();
@@ -86,6 +107,25 @@ export default function Popup() {
                             onChange={handleFormChange}
                             value={email}
                         />
+                        <FormControl variant="outlined" className={classes.formControl}>
+                            <InputLabel id="demo-simple-select-outlined-label">Group</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-outlined-label"
+                                id="demo-simple-select-outlined"
+                                value={groups.id}
+                                name="group_id"
+                                // onChange={handleChange}
+                                label="Group"
+                            >
+                                {
+                                    groups.map((group) => (
+                                        <MenuItem value={group.id}>
+                                            <em>{group.name}</em>
+                                        </MenuItem>
+                                    ))
+                                }
+                            </Select>
+                        </FormControl>
                     </Grid>
                     <Grid item sm={2}></Grid>
                     <Grid item sm={5}>

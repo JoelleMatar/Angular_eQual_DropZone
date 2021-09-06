@@ -20,7 +20,15 @@ const UseStyles = makeStyles((theme) => ({
     },
     addUser: {
         float: "right"
-    }
+    },
+    formControl: {
+        margin: theme.spacing(1.3),
+        minWidth: 120,
+        width: '25ch'
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 export default UseStyles;
