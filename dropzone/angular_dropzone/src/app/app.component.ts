@@ -25,6 +25,7 @@ export class AppComponent {
     loading = false;
     removeFromDZ = false;
     renameFile = false;
+    uploadFail = false;
 
     name: string = '';
 
@@ -66,6 +67,7 @@ export class AppComponent {
             }
             catch (err) {
                 console.log(err);
+                this.uploadFail = true;
             }
         }
         this.loading = false;

@@ -52,6 +52,8 @@
 
   <mat-spinner *ngIf="loading" style="margin: auto" color="accent"></mat-spinner>
 
+  <p *ngIf="uploadFail" style="margin: auto">Failed to upload file</p>
+
   
   <div style="width: 70%; margin: auto;" color="accent">
     <ngx-dropzone (change)="onSelect($event)" color="warm" style="border-color: #E91E63;">
