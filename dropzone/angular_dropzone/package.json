@@ -22,6 +22,7 @@
     "@angular/router": "~12.1.1",
     "ngx-dropzone": "^3.0.0",
     "rxjs": "~6.6.0",
+    "stream": "0.0.2",
     "tslib": "^2.3.1",
     "zone.js": "~0.11.4"
   },

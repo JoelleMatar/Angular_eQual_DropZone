@@ -14,12 +14,15 @@ import { AuthService } from 'src/auth/auth.service';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from 'src/angular-material.module';
-
+import { DialogDeleteComponent } from './dialogDelete/dialog-delete.component';
+import { MatDialogModule } from '@angular/material/dialog';
+// import { Stream } from 'stream';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
+  entryComponents: [DialogDeleteComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -29,6 +32,7 @@ import { AngularMaterialModule } from 'src/angular-material.module';
     FormsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    MatDialogModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }, 

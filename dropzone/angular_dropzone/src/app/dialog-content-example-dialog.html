@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Document</h1>
+<div mat-dialog-content>Are you sure you want to delete this document?</div>
+<div mat-dialog-actions style="margin-top: 10px; float: right;">
+  <button mat-button mat-dialog-close style="width: 70px; height: 30px; margin-right: 10px;" (click)="onNoClick()">Cancel</button>
+  <button mat-stroked-button color="accent" 
+    style="width: 70px; height: 30px; background-color: #3F51B5; color: white;"
+    (click)="onDelete()">Delete</button>
+</div>
