@@ -1,0 +1,14 @@
+{
+    "NAME": "Nom",
+    "TYPE": "Type",
+    "DOCUMENT": "Documents",
+    "ACTIONS": "Actions",
+    "FAILED_UPLOAD": "Échec du téléchargement du fichier",
+    "DROP": "Choisissez ou déposez vos fichiers ici !",
+    "VIEWDOC": "Afficher le document",
+    "DELETEDOC": "Supprimer le document",
+    "CONFIRMATION": "Êtes-vous sûr de vouloir supprimer ce document ?",
+    "DELETE": "Supprimer",
+    "CANCEL": "Annuler"
+}
+  

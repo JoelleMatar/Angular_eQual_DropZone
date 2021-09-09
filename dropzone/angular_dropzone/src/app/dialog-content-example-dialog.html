@@ -1,8 +1,13 @@
-<h1 mat-dialog-title>Delete Document</h1>
-<div mat-dialog-content>Are you sure you want to delete this document?</div>
+<select #langSelect (change)="translate.use(langSelect.value)" style=" height: 30px; background-color: #303F9F; color: white;margin-left: 82%; margin-bottom: 30px; font-size: 16px; margin-top: 10px;">
+    <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ lang
+      }}</option>
+  </select>
+
+<h1 mat-dialog-title>{{'DELETEDOC' | translate}}</h1>
+<div mat-dialog-content>{{'CONFIRMATION' | translate}}</div>
 <div mat-dialog-actions style="margin-top: 10px; float: right;">
-  <button mat-button mat-dialog-close style="width: 70px; height: 30px; margin-right: 10px;" (click)="onNoClick()">Cancel</button>
-  <button mat-stroked-button color="accent" 
-    style="width: 70px; height: 30px; background-color: #3F51B5; color: white;"
-    (click)="onDelete()">Delete</button>
+    <button mat-button mat-dialog-close style="width: 70px; height: 30px; margin-right: 10px;"
+        (click)="onNoClick()">{{'CANCEL' | translate}}</button>
+    <button mat-stroked-button color="accent"
+        style="width: 100px; height: 30px; background-color: #3F51B5; color: white;" (click)="onDelete()">{{'DELETE' | translate}}</button>
 </div>

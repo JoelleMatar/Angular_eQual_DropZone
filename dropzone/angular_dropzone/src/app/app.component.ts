@@ -8,6 +8,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { DialogDeleteComponent } from './dialogDelete/dialog-delete.component';
 import { EventEmitter } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
     selector: 'app-root',
@@ -60,7 +61,13 @@ export class AppComponent implements AfterViewInit {
 
 
 
-    constructor(private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog) { }
+    constructor(private api: ApiService, private _snackBar: MatSnackBar, public dialog: MatDialog, public translate: TranslateService) {
+        translate.addLangs(['en', 'fr']);
+        translate.setDefaultLang('en');
+
+        const browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    }
     ngAfterViewInit(): void {
         throw new Error('Method not implemented.');
     }
@@ -323,8 +330,15 @@ export class DialogContentExampleDialog {
 
     constructor(
         private api: ApiService,
+        public translate: TranslateService,
         public dialogRef: MatDialogRef<DialogContentExampleDialog>,
-        @Inject(MAT_DIALOG_DATA) public data: { index: number, files: any[], fileId: number, load: EventEmitter<Number> }) { }
+        @Inject(MAT_DIALOG_DATA) public data: { index: number, files: any[], fileId: number, load: EventEmitter<Number> }) {
+        translate.addLangs(['en', 'fr']);
+        translate.setDefaultLang('en');
+
+        const browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+    }
 
     onNoClick(): void {
         this.dialogRef.close();

@@ -1,0 +1,14 @@
+{
+    "NAME": "Name",
+    "TYPE": "Type",
+    "DOCUMENT": "Documents",
+    "ACTIONS": "Actions",
+    "FAILED_UPLOAD": "Failed to upload file",
+    "DROP": "Choose or Drop your files here!",
+    "VIEWDOC": "View Document",
+    "DELETEDOC": "Delete Document",
+    "CONFIRMATION": "Are you sure you want to delete this document?",
+    "DELETE": "Delete",
+    "CANCEL": "Cancel"
+}
+  
