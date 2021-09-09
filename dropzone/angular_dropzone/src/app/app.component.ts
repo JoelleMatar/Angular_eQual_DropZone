@@ -21,18 +21,6 @@ export class AppComponent implements AfterViewInit {
     columns = ["Image Name", "Type", "viewImg", "action"];
     index = ["name", "type", "viewImg", "action"];
 
-    // @ViewChild(MatPaginator) paginator = MatPaginator;
-
-    // ngAfterViewInit() {
-    //   this.dataSource.paginator = this.paginator;
-    // }
-
-    // openDialog() {
-    //     this.dialog.open(DialogElementsExampleDialog);
-    //   }
-
-    currentDoc = 'Television';
-
     docs: any[] = [];
     files: any[] = this.docs;
 
@@ -91,7 +79,7 @@ export class AppComponent implements AfterViewInit {
         for (var i = 0; i < file.length; i++) {
             const data = await this.readFile(file[i]);
             try {
-                const response = await this.api.create("core\\Image", {
+                const response = await this.api.create("documents\\Document", {
                     name: file[i].name,
                     type: file[i].type,
                     data: data
@@ -281,7 +269,7 @@ export class AppComponent implements AfterViewInit {
 
         console.log("file name", file);
 
-        const response = await this.api.read("core\\Image", [file], ['name']);
+        const response = await this.api.read("documents\\Document", [file], ['name']);
 
         if (response) {
             console.log("okkk", response[0].name);
@@ -302,7 +290,7 @@ export class AppComponent implements AfterViewInit {
 
         console.log("fileee", file);
         try {
-            const response = await this.api.update("core\\Image", [file.id], { name: this.value }, true);
+            const response = await this.api.update("documents\\Document", [file.id], { name: this.value }, true);
 
             if (response) {
 
@@ -348,7 +336,7 @@ export class DialogContentExampleDialog {
         console.log("data", this.data);
         try {
             // permanent deletion
-            await this.api.remove("core\\Image", [this.data.fileId], true).then(result => {
+            await this.api.remove("documents\\Document", [this.data.fileId], true).then(result => {
                 console.log("file to delete", this.data.index);
 
                 this.data.files.splice(this.data.index, 1);
